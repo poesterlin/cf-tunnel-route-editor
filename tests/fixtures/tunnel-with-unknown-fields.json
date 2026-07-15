@@ -1,0 +1,37 @@
+{
+  "tunnel_id": "test-with-unknown",
+  "config": {
+    "ingress": [
+      {
+        "id": "1",
+        "hostname": "app.example.com",
+        "service": "https://backend:443",
+        "originRequest": {
+          "http2Origin": true
+        },
+        "futureField": {
+          "nested": "value",
+          "array": [1, 2, 3]
+        }
+      },
+      {
+        "id": "2",
+        "hostname": "other.example.com",
+        "service": "https://other:8080",
+        "anotherFutureField": "should-survive"
+      },
+      {
+        "service": "http_status:404",
+        "futureGlobalSetting": true
+      }
+    ],
+    "warp-routing": {
+      "enabled": false
+    },
+    "futureTopLevel": {
+      "something": "important"
+    }
+  },
+  "version": 50,
+  "unknownFutureMetadata": "preserve-me"
+}

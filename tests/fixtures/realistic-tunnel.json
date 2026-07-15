@@ -1,0 +1,61 @@
+{
+  "tunnel_id": "f174e90a-89e9-4246-9636-24d79a1d8931",
+  "config": {
+    "ingress": [
+      {
+        "id": "1",
+        "hostname": "app.example.com",
+        "service": "https://backend-internal:443",
+        "originRequest": {
+          "http2Origin": true,
+          "originServerName": "app.example.com"
+        }
+      },
+      {
+        "id": "2",
+        "hostname": "api.example.com",
+        "service": "https://api-internal:8443",
+        "path": "/v2",
+        "originRequest": {
+          "http2Origin": true,
+          "noTLSVerify": true
+        }
+      },
+      {
+        "id": "3",
+        "hostname": "docs.example.com",
+        "service": "https://traefik",
+        "originRequest": {
+          "http2Origin": true,
+          "noTLSVerify": true,
+          "httpHostHeader": "docs.example.com"
+        }
+      },
+      {
+        "id": "4",
+        "hostname": "static.example.com",
+        "service": "http://nginx:80"
+      },
+      {
+        "id": "5",
+        "hostname": "monitor.example.com",
+        "service": "https://grafana:3000",
+        "originRequest": {
+          "http2Origin": true,
+          "originServerName": "monitor.example.com",
+          "connectTimeout": 30,
+          "tlsTimeout": 15
+        }
+      },
+      {
+        "service": "http_status:404"
+      }
+    ],
+    "warp-routing": {
+      "enabled": true
+    }
+  },
+  "version": 128,
+  "source": "local",
+  "created_at": "2025-01-15T10:30:00Z"
+}
